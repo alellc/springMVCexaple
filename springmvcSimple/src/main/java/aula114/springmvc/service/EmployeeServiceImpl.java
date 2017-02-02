@@ -22,29 +22,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
-    private RedisTemplate<String, String> redisTemplate;
-    private List<String> listIdEmployee;
+    private RedisTemplate redisTemplate;
 
-    public EmployeeServiceImpl() {
-		listIdEmployee = new ArrayList<String>();
-	}
-
-    public void setJdbcTemplate(JdbcTemplate t) {
-      jdbcTemplate=t;
-    }
 
 	@Override
 	public List<String> listIdEmployee() {
-        listIdEmployee =  redisTemplate.opsForHash().keys(KEY);
-
-        return listIdEmployee;
+        List<String> list = new  ArrayList<String>();
+        Set<Object> set = redisTemplate.opsForHash().keys("Contact");
+        for(Object o : set){
+        	list.add(o.toString());
+        }
+        return list;
 	}
 
 	@Override
 	public Contact show(String id) {
 		String sql ="select * from contact where id = ?";
-		Contact contact = jdbcTemplate.queryForObject(sql, new Object[]{id});
+		//Contact contact = jdbcTemplate.queryForObject(sql, new Object[]{id});
 
-		return contact;
+		return null;
 	}
 }

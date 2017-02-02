@@ -16,19 +16,25 @@ import java.util.ArrayList;
 @Controller
 public class EmployeeController {
 
+  @Autowired
+  private EmployeeService employeeService;
 
-  @RequestMapping("/show/{clave}")
+  /*@RequestMapping("/show/{clave}")
   public ... {
     //  
   }
-  
+  */
   @RequestMapping("/show")
-  public ... {
-    //  
+  public String show (Model model,@RequestParam("clave") String id){
+    Contact c = employeeService.show(id);
+    model.addAttribute("acontact",c);
+    return "show";
   }
   
   @RequestMapping("/employee")
-  public ... {
-    //  
+  public String consulta(Model model){
+    List<String> list = employeeService.listIdEmployee();
+    model.addAttribute("list",list);
+    return "consulta";
   }
 }
