@@ -18,16 +18,12 @@ public class EmployeeController {
 
   @Autowired
   private EmployeeService employeeService;
-
-  /*@RequestMapping("/show/{clave}")
-  public ... {
-    //  
-  }
-  */
+  
   @RequestMapping("/show")
   public String show (Model model,@RequestParam("clave") String id){
+    /*System.out.println("Prueba"+id);*/
     Contact c = employeeService.show(id);
-    model.addAttribute("acontact",c);
+    model.addAttribute("aContact",c);
     return "show";
   }
   

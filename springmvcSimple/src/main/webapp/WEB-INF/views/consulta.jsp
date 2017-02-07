@@ -9,11 +9,11 @@
 		<p>
 			<select name="clave">
 				<c:forEach var = "item" items="${list}">
-					<option>$item</option>
+					<option>${item}</option>
 				</c:forEach>
 			</select>
 		</p>
-		<input type="submit" value="Mostrar">
+		<input type="submit" value="Ver">
 	</form>
 </body>
 </html>

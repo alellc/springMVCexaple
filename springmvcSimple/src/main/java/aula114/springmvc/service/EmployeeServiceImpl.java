@@ -36,10 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Contact show(String id) {
-		String sql ="select * from contact where id = ?";
-		//Contact contact = jdbcTemplate.queryForObject(sql, new Object[]{id});
-
-		return null;
+	public Contact show(String contact_id) {
+		String sql ="select * from contact where contact_id = ?";
+		Contact contact = new Contact();  		
+		contact = jdbcTemplate.queryForObject(sql, new Object[]{contact_id}, new BeanPropertyRowMapper<Contact>(Contact.class));
+        return contact;
 	}
 }
